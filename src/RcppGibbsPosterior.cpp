@@ -787,7 +787,7 @@ void calInjectionREML(gsl_matrix* tendance, gsl_matrix* injection_orthogonal_ten
 
   gsl_matrix_free(matriceR);
 
-  gsl_matrix_memcpy(injection_orthogonal_tendance,&gsl_matrix_submatrix(auxiliaire,0,tendance->size2, tendance->size1, tendance->size1 - tendance->size2).matrix);
+  gsl_matrix_memcpy(injection_orthogonal_tendance, &gsl_matrix_submatrix(auxiliaire,0,tendance->size2, tendance->size1, tendance->size1 - tendance->size2).matrix);
 
   gsl_matrix_free(auxiliaire);
 
