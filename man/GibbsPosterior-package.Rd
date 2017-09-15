@@ -1,6 +1,6 @@
-\name{GibbsPosteriorC-package}
-\alias{GibbsPosteriorC-package}
-\alias{GibbsPosteriorC}
+\name{GibbsPosterior-package}
+\alias{GibbsPosterior-package}
+\alias{GibbsPosterior}
 \docType{package}
 \title{
   A short title line describing what the package does
