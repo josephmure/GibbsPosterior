@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 GibbsPosteriorC <- function(dimension, regularite, nb_points_a_generer, iterations, sd_instrum, nb_fonctionsTendance, random_seed, words, planXP, observations, tendanceR) {
-    .Call('GibbsPosteriorC_GibbsPosteriorC', PACKAGE = 'GibbsPosteriorC', dimension, regularite, nb_points_a_generer, iterations, sd_instrum, nb_fonctionsTendance, random_seed, words, planXP, observations, tendanceR)
+    .Call('GibbsPosterior_GibbsPosteriorC', PACKAGE = 'GibbsPosterior', dimension, regularite, nb_points_a_generer, iterations, sd_instrum, nb_fonctionsTendance, random_seed, words, planXP, observations, tendanceR)
 }
 
 quarantedeux <- function() {
-    .Call('GibbsPosteriorC_quarantedeux', PACKAGE = 'GibbsPosteriorC')
+    .Call('GibbsPosterior_quarantedeux', PACKAGE = 'GibbsPosterior')
 }
 

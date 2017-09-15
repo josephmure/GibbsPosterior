@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // GibbsPosteriorC
 RcppGSL::vector<double> GibbsPosteriorC(int dimension, double regularite, int nb_points_a_generer, int iterations, double sd_instrum, int nb_fonctionsTendance, unsigned long int random_seed, std::vector<std::string> words, RcppGSL::matrix<double> planXP, RcppGSL::vector<double> observations, RcppGSL::matrix<double> tendanceR);
-RcppExport SEXP GibbsPosteriorC_GibbsPosteriorC(SEXP dimensionSEXP, SEXP regulariteSEXP, SEXP nb_points_a_genererSEXP, SEXP iterationsSEXP, SEXP sd_instrumSEXP, SEXP nb_fonctionsTendanceSEXP, SEXP random_seedSEXP, SEXP wordsSEXP, SEXP planXPSEXP, SEXP observationsSEXP, SEXP tendanceRSEXP) {
+RcppExport SEXP GibbsPosterior_GibbsPosteriorC(SEXP dimensionSEXP, SEXP regulariteSEXP, SEXP nb_points_a_genererSEXP, SEXP iterationsSEXP, SEXP sd_instrumSEXP, SEXP nb_fonctionsTendanceSEXP, SEXP random_seedSEXP, SEXP wordsSEXP, SEXP planXPSEXP, SEXP observationsSEXP, SEXP tendanceRSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -29,7 +29,7 @@ END_RCPP
 }
 // quarantedeux
 int quarantedeux();
-RcppExport SEXP GibbsPosteriorC_quarantedeux() {
+RcppExport SEXP GibbsPosterior_quarantedeux() {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
