@@ -1,0 +1,2 @@
+  PKG_CPPFLAGS=-I/home/C39575/.local/include
+  PKG_LIBS= -static -L/home/C39575/.local/lib -lgsl -lgslcblas -lm
