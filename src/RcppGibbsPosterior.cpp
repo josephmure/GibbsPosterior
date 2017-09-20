@@ -787,7 +787,7 @@ void calInjectionREML(gsl_matrix* tendance, gsl_matrix* injection_orthogonal_ten
 
   gsl_matrix_free(matriceR);
 
-	//La nouvelle version de GCC n'apprcie pas cette syntaxe :
+	//La nouvelle version de GCC n'apprecie pas cette syntaxe :
   	//gsl_matrix_memcpy(injection_orthogonal_tendance, &gsl_matrix_submatrix(auxiliaire,0,tendance->size2, tendance->size1, tendance->size1 - tendance->size2).matrix);
 
   //Creation d'une vue sur la partie de auxiliaire qui contient l'injection sur l'orthogonal de l'espace engendre par H (ou P):
