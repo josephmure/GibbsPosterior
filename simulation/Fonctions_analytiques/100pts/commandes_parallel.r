@@ -14,7 +14,7 @@ library(GibbsPosteriorC)
 source("../../trouveMLE.r")
 source("../../postTraitement.r")
 
-NOMBRE_PROCESSUS <-  400
+NOMBRE_PROCESSUS <-  500
 
 #NOMBRE_DIMENSIONS <- 7
 REGULARITE <- 2.5
@@ -52,12 +52,23 @@ MAP_optim_classique <- NULL
 
 library(SparkR)
 
-sparkR.session("local[*]")
+
+#Ce wrapper sert a etendre le timeout de SparkR (tres court par defaut) a 72h
+connectBackend.orig <- getFromNamespace('connectBackend', pos='package:SparkR')
+connectBackend.patched <- function(hostname, port, timeout = 3600*72) {
+   connectBackend.orig(hostname, port, timeout)
+}
+
+assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:SparkR')
+#Fin wrapper
+
+#sparkR.session("local[*]")
+sparkR.session("spark://149.251.6.133:7077", appName="Simulations")
 
 
 faitSimulations <- function(germe_aleatoire)
 {
-  library(GibbsPosteriorC)
+  library(GibbsPosterior)
   #  print(paste("Germe aleatoire", germe_aleatoire) )
   #	VECTEUR_GERMES_ALEATOIRES <- c(VECTEUR_GERMES_ALEATOIRES, germe_aleatoire)
   #	write.matrix(VECTEUR_GERMES_ALEATOIRES, "liste_germes_aleatoires.txt")
