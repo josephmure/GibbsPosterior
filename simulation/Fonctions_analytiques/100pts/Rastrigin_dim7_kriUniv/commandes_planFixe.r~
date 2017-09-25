@@ -1,0 +1,100 @@
+library(pscl)
+NOMBRE_PROCESSUS <- 1
+
+VECTEUR_GERMES_ALEATOIRES <- NULL
+GERME_ALEATOIRE_GLOBAL <- scan("germe_aleatoire.txt")
+
+MLE <- NULL
+MAP <- NULL
+MAP_optim_classique <- NULL
+
+
+
+MATRICE_ERREURS_PREDICTION <- NULL
+MATRICE_ERREURS_PREDICTION_NORMALISEES <- NULL
+MATRICE_ESTIMATIONS_SIGMA_CARRE <- NULL
+MATRICE_ESTIMATIONS_BETA <- NULL
+MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI <- NULL
+#VECTEUR_FREQUENCE_APPARTIENT_INTERVALLE_PARI_BAYESIEN <- NULL
+MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI <- NULL
+
+
+source("nettoyage.r")
+
+
+##Ici, on génère une fois pour toute le plan d'expériences
+#germe_aleatoire <- GERME_ALEATOIRE_GLOBAL
+#source("generePlanXP.r")
+#germe_aleatoire <- NULL
+
+x_connus <- as.matrix(read.table("planXP.txt", as.is = TRUE))
+NOMBRE_POINTS_PLANXP <- nrow(x_connus)
+source("genereObservations.r")
+
+
+source("genereMatriceTendance.r")
+
+
+#y_connus <- scan("observations.txt")
+#tendance <- as.matrix(read.table("tendance.txt",as.is=TRUE))
+
+source("trouveMLE.r")
+
+for(germe_aleatoire in (GERME_ALEATOIRE_GLOBAL+1):(GERME_ALEATOIRE_GLOBAL+NOMBRE_PROCESSUS) )
+{
+	print(paste("Germe aleatoire", germe_aleatoire) )
+	VECTEUR_GERMES_ALEATOIRES <- c(VECTEUR_GERMES_ALEATOIRES, germe_aleatoire)
+	write.matrix(VECTEUR_GERMES_ALEATOIRES, "liste_germes_aleatoires.txt")
+
+##	source("../../nettoyage.r")
+
+
+	source("scriptR.r")
+	source("postTraitement.r")
+
+
+	Indices_selectionnes <- 10* (1:(nrow(Posterior)/10))
+	ECHANTILLON_POSTERIOR <- Posterior[Indices_selectionnes,]
+
+    source("compareResultats.r")
+
+
+	MATRICE_ERREURS_PREDICTION <- rbind(MATRICE_ERREURS_PREDICTION, Ecart_prediction )
+    write.matrix(MATRICE_ERREURS_PREDICTION,"matrice_ecarts_predictions.txt",sep = "\t")
+
+	MATRICE_ERREURS_PREDICTION_NORMALISEES <- rbind(MATRICE_ERREURS_PREDICTION_NORMALISEES, Ecart_prediction_normalise )
+    write.matrix(MATRICE_ERREURS_PREDICTION_NORMALISEES,"matrice_ecarts_predictions_normalises.txt",sep = "\t")
+
+	MATRICE_ESTIMATIONS_SIGMA_CARRE <- rbind(MATRICE_ESTIMATIONS_SIGMA_CARRE, Estimations_sigma_carre )
+    write.matrix(MATRICE_ESTIMATIONS_SIGMA_CARRE,"matrice_estimations_sigma_carre.txt",sep = "\t")
+
+	MATRICE_ESTIMATIONS_BETA <- rbind(MATRICE_ESTIMATIONS_BETA, Estimations_beta )
+    write.matrix(MATRICE_ESTIMATIONS_BETA,"matrice_estimations_beta.txt",sep = "\t")
+
+    MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI <- rbind(MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI, Frequences_appartient_intervalle_pari )
+    write.matrix(MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI, "matrice_frequences_appartient_intervalle_pari.txt", sep = "\t")
+
+	MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI <- rbind(MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI,  Longueurs_moyennes_intervalles_pari )
+	write.matrix(MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI, "matrice_longueurs_moyennes_intervalles_pari.txt", sep = "\t")
+
+
+
+#	source("../../postTraitement.r")
+##	source("../../compareResultats.r") # Devenu inutile puisque ces comparaisons se font apres coup
+
+#	MATRICE_DISTANCES <- rbind(MATRICE_DISTANCES, c( Distance_argmax_vraisemblance[1], Distance_mode_posterior[1]) )
+#	write.matrix(MATRICE_DISTANCES,"matrice_distances.txt",sep = "\t")#
+
+#	MATRICE_DISTANCES_FISHER <- rbind(MATRICE_DISTANCES_FISHER, c( Distance_argmax_vraisemblance[2], Distance_mode_posterior[2]) )
+#	write.matrix(MATRICE_DISTANCES_FISHER,"matrice_distances_fisher.txt",sep = "\t")
+
+#	MATRICE_ERREURS_PREDICTION <- rbind(MATRICE_ERREURS_PREDICTION, c(Ecart_prediction_argmax_vraisemblance, Ecart_prediction_mode_posterior) )
+#	write.matrix(MATRICE_ERREURS_PREDICTION,"matrice_ecarts_predictions.txt",sep = "\t")
+
+#	MLE <- rbind(MLE, argmax_vraisemblance_integree)
+#	write.matrix(MLE,"liste_MLE.txt",sep = "\t")
+#	MAP <- rbind(MAP, mode_posterior)
+#	write.matrix(MAP,"liste_MAP.txt",sep = "\t")
+#	MAP_optim_classique <- rbind(MAP_optim_classique, mode_posterior_optim_classique)
+#	write.matrix(MAP_optim_classique,"liste_MAP_optim_classique.txt", sep = "\t")
+}

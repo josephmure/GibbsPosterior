@@ -513,6 +513,14 @@ sparkR.stop()
 save.image(file = "Evaluations.RData",safe = TRUE)
 
 
+MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI <- NULL
+for(i in 1:length(Evaluations)) MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI <- rbind(MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI,Evaluations[[i]]$FREQUENCES_APPARTIENT_INTERVALLE_PARI)
+write.matrix(MATRICE_FREQUENCES_APPARTIENT_INTERVALLE_PARI, "matrice_frequences_appartient_intervalle_pari.txt", sep = "\t")
+
+MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI <- NULL
+for(i in 1:length(Evaluations)) MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI <- rbind(MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI,  Evaluations[[i]]$LONGUEURS_MOYENNES_INTERVALLES_PARI)
+write.matrix(MATRICE_LONGUEURS_MOYENNES_INTERVALLES_PARI, "matrice_longueurs_moyennes_intervalles_pari.txt", sep = "\t")
+
 
 # ## Ecriture des résultats
 # 
