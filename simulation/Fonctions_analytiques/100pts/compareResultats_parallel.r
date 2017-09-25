@@ -21,7 +21,7 @@ if(is.null(Simulations[[1]]$germe_aleatoire)) {
 for(i in 1:NOMBRE_PROCESSUS) Simulations[[i]]$germe_aleatoire <- GERME_ALEATOIRE_GLOBAL + i
 }
 
-CARDINAL_ENSEMBLE_TEST <- 10000
+CARDINAL_ENSEMBLE_TEST <- 1000#0
 POURCENTAGE_INTERVALLE_CONFIANCE <- 95
 #POURCENTAGE_INTERVALLE_CONFIANCE_BAYESIEN <- 90
 
@@ -70,7 +70,13 @@ if(nrow(tendance)*ncol(tendance)==1) NOMBRE_FONCTIONS_TENDANCE <- 0 # si la matr
 
 LONGUEUR_CORRELATION_ARGMAX_VRAISEMBLANCE <- une_simulation$MLE
 LONGUEUR_CORRELATION_MODE_POSTERIOR <- une_simulation$MAP
+
+if(nrow(une_simulation$Posterior)%%10 == 0) {
+  ECHANTILLON_POSTERIOR <- une_simulation$Posterior[10 * (1:(nrow(une_simulation$Posterior)/10)),]
+} else {
+  print("L'echantillon de la loi a posteriori n'est pas divisible par 10.")
 ECHANTILLON_POSTERIOR <- une_simulation$Posterior
+}
 
 
 if(TYPE_NOYAU_MATERN == "geometrique") 
