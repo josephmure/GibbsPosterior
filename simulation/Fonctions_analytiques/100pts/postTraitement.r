@@ -1,5 +1,5 @@
 library(pscl)
-library(GenSA)
+#library(GenSA)
 
 
 dossier_courant <- getwd()

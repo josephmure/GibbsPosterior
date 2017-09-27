@@ -51,7 +51,7 @@ evalueSimulations <- function(une_simulation)
 
   if(is.null(une_simulation$planXP)) { #Ici, planXP observations et tendance n'ont pas ete stockes dans une_simulation
     x_connus <- generePlanXP(une_simulation$germe_aleatoire,NOMBRE_POINTS_PLANXP = 100, NOMBRE_DIMENSIONS, LHS=FALSE)
-    y_connus <- Rastrigin(x_connus)
+    y_connus <- Fonction_emulee(x_connus)
     tendance <- genereMatriceTendance(x_connus,FONCTIONS)
  } else {
 x_connus <- une_simulation$planXP ### Attention ! doit figurer dans Simulations
@@ -253,7 +253,7 @@ Prediction_mode_posterior <- t(y_connus) %*% MATRICE_MODE_POSTERIOR_INVERSE %*% 
 
 ## Calcul des vraies valeurs de la fonction jouet aux points de l'ensemble test (Attention, ces valeurs sont presentees dans un vecteur LIGNE)
 
-Valeurs_nouveaux_points <- Rastrigin(Nouveaux_points)
+Valeurs_nouveaux_points <- Fonction_emulee(Nouveaux_points)
 
 
 ## Ecarts au carre entre moyennes conditionnelles supposant pour les longueurs de correlation les valeurs du MLE et du MAP respectivement et la vraie valeur

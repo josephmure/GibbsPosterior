@@ -2,7 +2,7 @@ library(lhs)
 library(pscl)
 
 
-source("../../../../Briques_these.r")
+#source("../../../../Briques_these.r")
 
 
 generePlanXP <- function(GERME_ALEATOIRE_R, NOMBRE_POINTS_PLANXP, NOMBRE_DIMENSIONS, LHS)

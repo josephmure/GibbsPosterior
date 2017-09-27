@@ -1,15 +1,12 @@
 library(pscl)
 library(lhs)
 
-source("../Rastrigin.r")
-
 source("../../generePlanXP.r")
 source("../../genereMatriceTendance.r")
 
 library(Rcpp)
 library(RcppGSL)
 #sourceCpp("../../RcppGibbsPosterior.cpp")
-library(GibbsPosteriorC)
 
 source("../../trouveMLE.r")
 source("../../postTraitement.r")
@@ -69,13 +66,14 @@ sparkR.session("spark://149.251.6.133:7077", appName="Simulations")
 faitSimulations <- function(germe_aleatoire)
 {
   library(GibbsPosterior)
+  library(GibbsPosteriorRequired)
   #  print(paste("Germe aleatoire", germe_aleatoire) )
   #	VECTEUR_GERMES_ALEATOIRES <- c(VECTEUR_GERMES_ALEATOIRES, germe_aleatoire)
   #	write.matrix(VECTEUR_GERMES_ALEATOIRES, "liste_germes_aleatoires.txt")
   #	source("../../nettoyage.r") #inutile : on n'ecrit plus de donnees intermediaires sur le disque dur
   #	source("../../generePlanXP.r") #inutile : deja contenu dans genereObservations.r
   x_connus <- generePlanXP(germe_aleatoire,NOMBRE_POINTS_PLANXP = 100, NOMBRE_DIMENSIONS, LHS=FALSE)
-  y_connus <- Rastrigin(x_connus)
+  y_connus <- Fonction_emulee(x_connus)
   #	source("../genereObservations.r")
   #	source("../../genereMatriceTendance.r")
   tendance <- genereMatriceTendance(x_connus,FONCTIONS)
@@ -105,7 +103,7 @@ faitSimulations <- function(germe_aleatoire)
   # 	write.matrix(MAP,"liste_MAP.txt",sep = "\t")
   
   #Simulations[germe_aleatoire,] <- c(argmax_vraisemblance_integree,mode_posterior,point_posterior)
-  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = matrix(point_posterior,ncol=NOMBRE_DIMENSIONS,byrow=TRUE), planXP = x_connus, observations = y_connus, tendance = tendance) 
+  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = matrix(point_posterior,ncol=NOMBRE_DIMENSIONS,byrow=TRUE), planXP = x_connus, observations = y_connus, tendance = tendance, germe_aleatoire = germe_aleatoire) 
 
 
   }

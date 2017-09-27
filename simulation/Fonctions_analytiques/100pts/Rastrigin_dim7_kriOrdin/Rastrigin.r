@@ -14,5 +14,8 @@ Rastrigin <- function(matrice_points)
 }
 
 
+## Wrapper for Rastrigin, so that commandes_parallel.r does not have to know that Rastrigin is being used.
+Fonction_emulee <- Rastrigin
+
 ## Nombres de dimensions
 NOMBRE_DIMENSIONS <- 7

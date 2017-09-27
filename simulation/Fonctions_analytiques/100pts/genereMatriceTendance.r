@@ -1,7 +1,7 @@
 library(lhs)
 library(pscl)
 
-source("../../../../Briques_these.r")
+#source("../../../../Briques_these.r")
 
 #Cree FONCTIONS, la liste des fonctions servant a former les colonnes de tendance (H) ainsi que FONCTIONS_REELLES, la liste des fonctions dont la moyenne est REELLEMENT une combinaison lineaire.
 source("../fonctions.r")
