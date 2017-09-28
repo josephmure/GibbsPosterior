@@ -1,0 +1,15 @@
+#library(distr)
+library(pscl)
+#library(ggplot2)
+#library(rgl)
+
+source("../Matern_these.r")
+source("../Briques_these.r")
+source("../Krige_these.r")
+source("Ishigami.r")
+
+x_connus <- as.matrix(read.table("planXP.txt", as.is = TRUE))
+
+y_connus <- Ishigami(x_connus)
+write.matrix(y_connus,"observations.txt",sep = "\t")
+

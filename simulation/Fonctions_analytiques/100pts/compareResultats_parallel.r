@@ -2,6 +2,7 @@
 library(pscl)
 #library(ggplot2)
 #library(rgl)
+library(MASS)
 
 
 #source("../../../../Matern_these.r")
