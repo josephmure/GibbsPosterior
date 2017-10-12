@@ -4,7 +4,7 @@
 
 Rastrigin_unPoint <- function(vecteur_point)
 {
-	sum(vecteur_point * vecteur_point - 10 * cos(2*pi*vecteur_point) + 10) + 100 * vecteur_point ## ce dernier terme est artificiellement ajoute pour rendre la tendance lineaire pertinente
+	sum(vecteur_point * vecteur_point - 10 * cos(2*pi*vecteur_point) + 10) + 100 * sum(vecteur_point) ## ce dernier terme est artificiellement ajoute pour rendre la tendance lineaire pertinente
 }
 
 ## La fonction d'Ackley est appliquee a chaque ligne de matrice_points
