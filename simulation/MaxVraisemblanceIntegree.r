@@ -1,9 +1,9 @@
-source("Matern_these.r")
-source("Krige_these.r")
+#source("Matern_these.r")
+#source("Krige_these.r")
 
 
 
-evalueVraisemblanceIntegreeAnisGeom <- function( longueur_correlation, x_connus, y_connus, regularite, tendance = "vide")
+evalueVraisemblanceIntegreeAnisGeom <- function( longueur_correlation, x_connus, y_connus, regularite, tendance = matrix(0))
     {
     Noyau <- creeMaternIsotrope ( variance= 1, longueur= longueur_correlation, regularite= regularite)
 
@@ -13,7 +13,7 @@ if(det(matriceCorrelation)!=0)
 {
 	tendanceInverseMatriceCorrelationTendance <- matrix(1)
 	nbFonctionsTendance <- 0
-	if(is.numeric(tendance))
+	if(length(tendance)>1) ## en cas de krigeage simple : tendance est une matrice 1x1 contenant 0
 	{
 		nbFonctionsTendance <- ncol(tendance)
 		inverseMatriceCorrelationTendance <- solve(matriceCorrelation,tendance)
@@ -28,7 +28,7 @@ else Vraisemblance_integree <- 0
 
 }
 
-evalueVraisemblanceIntegreeTens <- function( longueur_correlation, x_connus, y_connus, regularite, tendance = "vide")
+evalueVraisemblanceIntegreeTens <- function( longueur_correlation, x_connus, y_connus, regularite, tendance = matrix(0))
     {
     Noyau <- creeMaternTensorise ( variance= 1, longueur= longueur_correlation, regularite= regularite)
 
@@ -38,7 +38,7 @@ if(det(matriceCorrelation)!=0)
 {
 	tendanceInverseMatriceCorrelationTendance <- matrix(1)
 	nbFonctionsTendance <- 0
-	if(is.numeric(tendance))
+	if(length(tendance)>1) ## en cas de krigeage simple : tendance est une matrice 1x1 contenant 0
 	{
 		nbFonctionsTendance <- ncol(tendance)
 		inverseMatriceCorrelationTendance <- solve(matriceCorrelation,tendance)
