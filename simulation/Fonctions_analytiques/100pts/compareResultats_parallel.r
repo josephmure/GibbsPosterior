@@ -151,8 +151,8 @@ CORREL_CONNUS_NOUVEAUX_MODE_POSTERIOR <- creeMatriceCovariance(x1= x_connus, x2=
 ### NOUVEAU : accomode la tendance
 Moyenne_marginale <- 0
 
-if(NOMBRE_FONCTIONS_TENDANCE>0)
-{
+if(NOMBRE_FONCTIONS_TENDANCE>0){
+
   QR <- qr.Q(qr(tendance),complete=TRUE) #les NOMBRE_FONCTIONS_TENDANCE premieres colonnes de QR contiennent P, les dernieres W
   injectionOrthogonalTendance <- QR[,(NOMBRE_FONCTIONS_TENDANCE+1):ncol(QR)] #W
   injectionTendance <- QR[,1:NOMBRE_FONCTIONS_TENDANCE] #P
@@ -209,6 +209,11 @@ if(NOMBRE_FONCTIONS_TENDANCE>0)
   MATRICE_MODE_POSTERIOR_INJECTEE <- t(injectionOrthogonalTendance) %*% MATRICE_MODE_POSTERIOR %*% injectionOrthogonalTendance
   MATRICE_MODE_POSTERIOR_INVERSE <- solve(MATRICE_MODE_POSTERIOR_INJECTEE)
 
+}else { ##Cas du krigeage simple
+  MATRICE_ARGMAX_VRAISEMBLANCE_INVERSE <- solve(MATRICE_ARGMAX_VRAISEMBLANCE)
+  MATRICE_MODE_POSTERIOR_INVERSE <- solve(MATRICE_MODE_POSTERIOR)
+  MATRICE_NOUVEAUX_ARGMAX_VRAISEMBLANCE <- 1 
+  MATRICE_NOUVEAUX_MODE_POSTERIOR <- 1 
 }
 
 
