@@ -118,6 +118,8 @@ vecteurCorrelConnusNouveauTens <- function(longueurs_correlation, regularite, x_
 res
 }
 
-pnormParametresDevant <- function(parametres,t) pnorm(t,mean=parametres[1],sd=sqrt(parametres[2]))
+##pnormParametresDevant <- function(parametres,t) pnorm(t,mean=parametres[1],sd=sqrt(parametres[2])) ##ancienne version
+pnormParametresDevant <- function(parametres,t) pnorm(t,mean=parametres[,1],sd=sqrt(parametres[,2]))
 
-dnormParametresDevant <- function(parametres,t) dnorm(t,mean=parametres[1],sd=sqrt(parametres[2]))
+##dnormParametresDevant <- function(parametres,t) dnorm(t,mean=parametres[1],sd=sqrt(parametres[2])) ##ancienne version
+dnormParametresDevant <- function(parametres,t) dnorm(t,mean=parametres[,1],sd=sqrt(parametres[,2]))
