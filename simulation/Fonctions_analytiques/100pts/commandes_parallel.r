@@ -91,7 +91,7 @@ faitSimulations <- function(germe_aleatoire)
   #source("../../trouveMLE.r")
   
   argmax_vraisemblance_integree <- trouveMLE(NOMBRE_DIMENSIONS= ncol(x_connus),TYPE_NOYAU_MATERN, REGULARITE,x_connus, y_connus,tendance)
-  mode_posterior <- trouveMAP(FENETRE_opt_MAP = 1, Posterior, NOMBRE_DIMENSIONS = ncol(x_connus))  
+  mode_posterior <- trouveMAP(FENETRE_opt_MAP = 0.5, Posterior, NOMBRE_DIMENSIONS = ncol(x_connus), NOMBRE_DEPARTS = 20)  
   
   
   #	source("../../postTraitement.r")

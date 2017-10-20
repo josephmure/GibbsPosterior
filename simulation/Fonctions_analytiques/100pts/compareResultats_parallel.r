@@ -446,7 +446,8 @@ if(NOMBRE_FONCTIONS_TENDANCE>0)
 
 fonctionRepartitionPredictive <- function(t, numero_nouveau_point)
 {
-  mean( apply(Points_LC_parnorm[numero_nouveau_point,,],1,pnormParametresDevant, t=t) )
+  ##mean( apply(Points_LC_parnorm[numero_nouveau_point,,],1,pnormParametresDevant, t=t) ) ##ancienne version
+  mean( pnormParametresDevant(parametres =Points_LC_parnorm[numero_nouveau_point,,] , t=t) )
 }
 
 

@@ -42,17 +42,30 @@ setwd(dossier_courant)
 #write.matrix(mode_posterior, "mode_posterior.txt")
 
 
-trouveMAP <- function(FENETRE_opt_MAP, Posterior, NOMBRE_DIMENSIONS)
+trouveMAP <- function(FENETRE_opt_MAP, Posterior, NOMBRE_DIMENSIONS, NOMBRE_DEPARTS)
 {
-opt1 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
-opt2 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
-opt3 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
-opt4 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
-opt5 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+
+	point_depart <- apply(Posterior,2,mean) ##la moyenne n'est pas un si mauvais estimateur du mode... c'est un point de depart raisonnable
+
+	opt_par <- matrix(NA,nrow=NOMBRE_DEPARTS,ncol=NOMBRE_DIMENSIONS)
+	opt_value <- rep(NA,NOMBRE_DEPARTS)
 
 
-opt_value <- c(opt1$value,opt2$value,opt3$value,opt4$value,opt5$value)  
-opt_par <- rbind(opt1$par,opt2$par,opt3$par,opt4$par,opt5$par) 
+for(i in 1:NOMBRE_DEPARTS)
+{
+	opt <- optim(par=point_depart + runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+	opt_par[i,] <- opt$par
+	opt_value[i] <- opt$value
+}
+
+#opt1 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+#opt2 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+#opt3 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+#opt4 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+#opt5 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = densKernel, fenetre= FENETRE_opt_MAP, matrice_echantillon=Posterior, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
+
+#opt_value <- c(opt1$value,opt2$value,opt3$value,opt4$value,opt5$value)  
+#opt_par <- rbind(opt1$par,opt2$par,opt3$par,opt4$par,opt5$par) 
 
 #if(opt_MAP$convergence !=0) print(paste("Attention ! Pas de convergence de optim pour estimer le MAP. Code :", opt_MAP$convergence))
 
