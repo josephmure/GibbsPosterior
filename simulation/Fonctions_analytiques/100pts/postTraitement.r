@@ -44,8 +44,8 @@ setwd(dossier_courant)
 
 trouveMAP <- function(FENETRE_opt_MAP, Posterior, NOMBRE_DIMENSIONS, NOMBRE_DEPARTS)
 {
-
-	point_depart <- apply(Posterior,2,mean) ##la moyenne n'est pas un si mauvais estimateur du mode... c'est un point de depart raisonnable
+	Posterior_aux <- Posterior[ apply(Posterior,1,max) < 10 , ]
+	point_depart <- apply(Posterior_aux,2,mean) ##la moyenne n'est pas un si mauvais estimateur du mode... c'est un point de depart raisonnable
 
 	opt_par <- matrix(NA,nrow=NOMBRE_DEPARTS,ncol=NOMBRE_DIMENSIONS)
 	opt_value <- rep(NA,NOMBRE_DEPARTS)

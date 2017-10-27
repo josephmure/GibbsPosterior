@@ -17,6 +17,8 @@ library(MASS)
 
 load("../planXPvariable/Simulations.RData")
 
+
+
 #Pour que le germe aleatoire de chaque simulation soit connu :
 if(is.null(Simulations[[1]]$germe_aleatoire)) {
 for(i in 1:NOMBRE_PROCESSUS) Simulations[[i]]$germe_aleatoire <- GERME_ALEATOIRE_GLOBAL + i
@@ -43,7 +45,10 @@ assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:S
 #Fin wrapper
 
 #sparkR.session("local[*]")
-sparkR.session("spark://149.251.6.133:7077", appName="Evaluations")
+#nom_session_sparkR <- paste0("spark://",Sys.info()["nodename"],".athos.hbc.edf.fr:7077")
+sparkR.session("spark://10.89.80.11:7077", appName="Evaluations")
+#sparkR.session("spark://10.114.116.10:7077",appName="Evaluations")
+#sparkR.session(appName="Evaluations")
 
 evalueSimulations <- function(une_simulation)
 {

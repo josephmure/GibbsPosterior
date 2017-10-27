@@ -60,7 +60,10 @@ assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:S
 #Fin wrapper
 
 #sparkR.session("local[*]")
-sparkR.session("spark://149.251.6.133:7077", appName="Simulations")
+#nom_session_sparkR <- paste0("spark://",Sys.info()["nodename"],".athos.hbc.edf.fr:7077")
+sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
+#sparkR.session("spark://10.114.116.10:7077",appName="Simulations")
+#sparkR.session(appName="Simulations")
 
 
 faitSimulations <- function(germe_aleatoire)
