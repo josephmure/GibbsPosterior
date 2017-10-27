@@ -1,4 +1,4 @@
-load("Simulations_copie.RData")
+load("Simulations.RData")
 
 
 source("../../postTraitement.r")
@@ -10,3 +10,5 @@ for(i in 1:length(Simulations))
   print(Simulations[[i]]$MAP)
   print("######################")
 }
+
+save.image("Simulations.RData")
