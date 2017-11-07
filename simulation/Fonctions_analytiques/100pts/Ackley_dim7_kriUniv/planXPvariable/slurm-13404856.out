@@ -1,0 +1,101 @@
+
+launch-wrapper:
+	Running   -> /athos-gpfssata/home/C39575/miniconda/share/spark-2.0.2/sbin/start-all.sh
+	With args -> 
+
+/home/C39575/miniconda/jre
+/home/C39575/miniconda/jre
+starting org.apache.spark.deploy.master.Master, logging to /home/C39575/miniconda/share/spark/logs/spark-C39575-org.apache.spark.deploy.master.Master-1-atcn238.out
+=================
+/home/C39575/miniconda/share/spark/sbin/start-slave.sh spark://atfront1.athos.hpc.edf.fr:7077
+=================
+atcn238: bash: impossible de régler le groupe de processus du terminlal (40307): Ioctl() inapproprié pour un périphérique
+atcn238: bash: pas de contrôle de tâche dans ce shell
+atcn238: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn238.out
+atcn271: bash: impossible de régler le groupe de processus du terminlal (19854): Ioctl() inapproprié pour un périphérique
+atcn271: bash: pas de contrôle de tâche dans ce shell
+atcn271: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn271.out
+atcn604: bash: impossible de régler le groupe de processus du terminlal (53298): Ioctl() inapproprié pour un périphérique
+atcn604: bash: pas de contrôle de tâche dans ce shell
+atcn604: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn604.out
+atcn245: bash: impossible de régler le groupe de processus du terminlal (38387): Ioctl() inapproprié pour un périphérique
+atcn245: bash: pas de contrôle de tâche dans ce shell
+atcn245: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn245.out
+atcn244: bash: impossible de régler le groupe de processus du terminlal (38330): Ioctl() inapproprié pour un périphérique
+atcn244: bash: pas de contrôle de tâche dans ce shell
+atcn244: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn244.out
+atcn276: bash: impossible de régler le groupe de processus du terminlal (19884): Ioctl() inapproprié pour un périphérique
+atcn276: bash: pas de contrôle de tâche dans ce shell
+atcn276: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn276.out
+atcn269: bash: impossible de régler le groupe de processus du terminlal (20347): Ioctl() inapproprié pour un périphérique
+atcn269: bash: pas de contrôle de tâche dans ce shell
+atcn269: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn269.out
+atcn275: bash: impossible de régler le groupe de processus du terminlal (19875): Ioctl() inapproprié pour un périphérique
+atcn275: bash: pas de contrôle de tâche dans ce shell
+atcn275: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn275.out
+atcn605: bash: impossible de régler le groupe de processus du terminlal (51163): Ioctl() inapproprié pour un périphérique
+atcn605: bash: pas de contrôle de tâche dans ce shell
+atcn605: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn605.out
+atcn270: bash: impossible de régler le groupe de processus du terminlal (19888): Ioctl() inapproprié pour un périphérique
+atcn270: bash: pas de contrôle de tâche dans ce shell
+atcn270: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn270.out
+atcn242: bash: impossible de régler le groupe de processus du terminlal (38390): Ioctl() inapproprié pour un périphérique
+atcn242: bash: pas de contrôle de tâche dans ce shell
+atcn242: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn242.out
+atcn241: bash: impossible de régler le groupe de processus du terminlal (38360): Ioctl() inapproprié pour un périphérique
+atcn241: bash: pas de contrôle de tâche dans ce shell
+atcn241: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn241.out
+atcn606: bash: impossible de régler le groupe de processus du terminlal (51190): Ioctl() inapproprié pour un périphérique
+atcn606: bash: pas de contrôle de tâche dans ce shell
+atcn606: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn606.out
+atcn240: bash: impossible de régler le groupe de processus du terminlal (38356): Ioctl() inapproprié pour un périphérique
+atcn240: bash: pas de contrôle de tâche dans ce shell
+atcn240: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn240.out
+atcn273: bash: impossible de régler le groupe de processus du terminlal (19870): Ioctl() inapproprié pour un périphérique
+atcn273: bash: pas de contrôle de tâche dans ce shell
+atcn273: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn273.out
+atcn239: bash: impossible de régler le groupe de processus du terminlal (38345): Ioctl() inapproprié pour un périphérique
+atcn239: bash: pas de contrôle de tâche dans ce shell
+atcn239: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn239.out
+atcn272: bash: impossible de régler le groupe de processus du terminlal (19893): Ioctl() inapproprié pour un périphérique
+atcn272: bash: pas de contrôle de tâche dans ce shell
+atcn272: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn272.out
+atcn243: bash: impossible de régler le groupe de processus du terminlal (38395): Ioctl() inapproprié pour un périphérique
+atcn243: bash: pas de contrôle de tâche dans ce shell
+atcn243: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn243.out
+atcn274: bash: impossible de régler le groupe de processus du terminlal (19869): Ioctl() inapproprié pour un périphérique
+atcn274: bash: pas de contrôle de tâche dans ce shell
+atcn274: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn274.out
+atcn607: bash: impossible de régler le groupe de processus du terminlal (51164): Ioctl() inapproprié pour un périphérique
+atcn607: bash: pas de contrôle de tâche dans ce shell
+atcn607: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn607.out
+atcn608: bash: impossible de régler le groupe de processus du terminlal (51161): Ioctl() inapproprié pour un périphérique
+atcn608: bash: pas de contrôle de tâche dans ce shell
+atcn608: starting org.apache.spark.deploy.worker.Worker, logging to /home/C39575/miniconda/share/spark/logs/spark-c39575-org.apache.spark.deploy.worker.Worker-1-atcn608.out
+
+launch-wrapper:
+	Running   -> /athos-gpfssata/home/C39575/miniconda/share/spark-2.0.2/sbin/stop-all.sh
+	With args -> 
+
+atcn270: stopping org.apache.spark.deploy.worker.Worker
+atcn276: stopping org.apache.spark.deploy.worker.Worker
+atcn245: stopping org.apache.spark.deploy.worker.Worker
+atcn238: stopping org.apache.spark.deploy.worker.Worker
+atcn607: stopping org.apache.spark.deploy.worker.Worker
+atcn606: stopping org.apache.spark.deploy.worker.Worker
+atcn272: stopping org.apache.spark.deploy.worker.Worker
+atcn240: stopping org.apache.spark.deploy.worker.Worker
+atcn242: stopping org.apache.spark.deploy.worker.Worker
+atcn273: stopping org.apache.spark.deploy.worker.Worker
+atcn275: stopping org.apache.spark.deploy.worker.Worker
+atcn608: stopping org.apache.spark.deploy.worker.Worker
+atcn241: stopping org.apache.spark.deploy.worker.Worker
+atcn271: stopping org.apache.spark.deploy.worker.Worker
+atcn243: stopping org.apache.spark.deploy.worker.Worker
+atcn605: stopping org.apache.spark.deploy.worker.Worker
+atcn239: stopping org.apache.spark.deploy.worker.Worker
+atcn244: stopping org.apache.spark.deploy.worker.Worker
+atcn269: stopping org.apache.spark.deploy.worker.Worker
+atcn604: stopping org.apache.spark.deploy.worker.Worker
+atcn274: stopping org.apache.spark.deploy.worker.Worker
+no org.apache.spark.deploy.master.Master to stop
