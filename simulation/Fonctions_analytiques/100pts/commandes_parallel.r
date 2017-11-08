@@ -59,6 +59,11 @@ connectBackend.patched <- function(hostname, port, timeout = 3600*72) {
 assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:SparkR')
 #Fin wrapper
 
+#cherche le nom de la machine. L'experience montre que le nom interessant est le premier fourni par hostname -I, mais cela doit etre verifie en cas de changement de maitre
+#hostname = strsplit(system("hostname -I", intern = TRUE)," ")[[1]][1]
+
+#sparkR.session(paste0("spark://", hostname, ":7077"), appName="Simulations")
+
 #sparkR.session("local[*]")
 #nom_session_sparkR <- paste0("spark://",Sys.info()["nodename"],".athos.hbc.edf.fr:7077")
 sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
