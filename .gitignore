@@ -35,3 +35,9 @@ vignettes/*.pdf
 # ~ files
 *.r~
 *.txt~
+
+# Redundant large files
+point_posterior_anis_geom.txt
+Posterior_anis_geom.txt
+taux_sauts.txt
+GibbsPosterior
