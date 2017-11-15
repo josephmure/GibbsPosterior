@@ -19,7 +19,7 @@ NOMBRE_POINTS_POSTERIOR_A_GENERER <- 1000
 NOMBRE_PAS_METROPOLIS <- 50 
 ECART_TYPE_METROPOLIS <- 0.2
 
-
+POINT_DEPART <- rep(1,NOMBRE_DIMENSIONS)
 
 #TYPE_NOYAU_MATERN_TYPE_PRIOR <- scan("../type_noyau_prior.txt", what="character") ## interessant, mais en pratique c'est toujours la meme chose
 TYPE_NOYAU_MATERN_TYPE_PRIOR <- c("geometrique","REML")
@@ -64,9 +64,9 @@ assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:S
 
 #sparkR.session(paste0("spark://", hostname, ":7077"), appName="Simulations")
 
-sparkR.session("local[*]")
+#sparkR.session("local[*]")
 #nom_session_sparkR <- paste0("spark://",Sys.info()["nodename"],".athos.hbc.edf.fr:7077")
-#sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
+sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
 #sparkR.session("spark://10.114.116.10:7077",appName="Simulations")
 #sparkR.session(appName="Simulations")
 
@@ -93,10 +93,10 @@ faitSimulations <- function(germe_aleatoire)
   #quarantedeux()
   
 
-  point_posterior <- GibbsPosteriorC(ncol(x_connus), REGULARITE , NOMBRE_POINTS_POSTERIOR_A_GENERER, NOMBRE_PAS_METROPOLIS, ECART_TYPE_METROPOLIS, length(FONCTIONS),germe_aleatoire,TYPE_NOYAU_MATERN_TYPE_PRIOR, x_connus, y_connus, tendance)
+  res <- GibbsPosteriorC(ncol(x_connus), REGULARITE , NOMBRE_POINTS_POSTERIOR_A_GENERER, NOMBRE_PAS_METROPOLIS, ECART_TYPE_METROPOLIS, length(FONCTIONS),germe_aleatoire,TYPE_NOYAU_MATERN_TYPE_PRIOR, x_connus, y_connus, tendance, POINT_DEPART)
   
   
-  Posterior <- matrix(point_posterior,ncol=ncol(x_connus),byrow=TRUE)
+  Posterior <- matrix(res$posterior,ncol=ncol(x_connus),byrow=TRUE)
   
   
   #source("../../trouveMLE.r")
@@ -114,7 +114,7 @@ faitSimulations <- function(germe_aleatoire)
   # 	write.matrix(MAP,"liste_MAP.txt",sep = "\t")
   
   #Simulations[germe_aleatoire,] <- c(argmax_vraisemblance_integree,mode_posterior,point_posterior)
-  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = matrix(point_posterior,ncol=NOMBRE_DIMENSIONS,byrow=TRUE), planXP = x_connus, observations = y_connus, tendance = tendance, germe_aleatoire = germe_aleatoire) 
+  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = matrix(point_posterior,ncol=NOMBRE_DIMENSIONS,byrow=TRUE), planXP = x_connus, observations = y_connus, tendance = tendance, germe_aleatoire = germe_aleatoire, taux_sauts = res$taux_sauts) 
 
 
   }

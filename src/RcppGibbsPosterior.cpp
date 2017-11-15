@@ -948,7 +948,7 @@ unsigned int choisitLongueurCorrelationMetropolis(const gsl_rng* r, gsl_vector* 
   void generePointPosteriorGibbs(gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternAnisotropeGeometrique* noyau, double const& sd_instrum, unsigned int const& iterations, gsl_vector* vect_taux_sauts, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
 
 // Genere nb_points_a_generer jeux de longueurs de correlation par Gibbs.
-void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternAnisotropeGeometrique* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
+void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternAnisotropeGeometrique* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives, gsl_vector* taux_sauts); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
 
 
 
@@ -1207,7 +1207,7 @@ taux = nombre_sauts_acceptes / iterations_double;
 }
 
 
-void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternAnisotropeGeometrique* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives) //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde)
+void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternAnisotropeGeometrique* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives,gsl_vector* taux_sauts) //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde)
 {
 
   gsl_vector* vect_taux_sauts = gsl_vector_alloc(point_posterior->size);
@@ -1231,6 +1231,7 @@ void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,u
    //   gsl_vector_fprintf (g, vect_taux_sauts,"%f");
    //   fclose (g);
    // }
+   gsl_vector_set(taux_sauts,i, gsl_blas_dasum(vect_taux_sauts) / point_posterior->size); //mean of vect_taux_sauts
     }    
 
   gsl_vector_free(vect_taux_sauts);
@@ -1264,7 +1265,7 @@ unsigned int choisitLongueurCorrelationMetropolis(const gsl_rng* r, gsl_vector* 
 void generePointPosteriorGibbs(gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternTensorise* noyau, double const& sd_instrum, unsigned int const& iterations, gsl_vector* vect_taux_sauts, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
 
 // Genere nb_points_a_generer jeux de longueurs de correlation par Gibbs.
-void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternTensorise* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
+void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior,unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternTensorise* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives, gsl_vector* taux_sauts); //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde);
 
 
 
@@ -1478,7 +1479,7 @@ taux = nombre_sauts_acceptes / iterations_double;
 
 
 
-void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior, unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternTensorise* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives) //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde)
+void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior, unsigned int const& nb_points_a_generer, gsl_vector* point_posterior, const gsl_rng* r, gsl_vector* observations, MatriceEcarts* matrice_ecarts, NoyauMaternTensorise* noyau, double const& sd_instrum, unsigned int const& iterations, const gsl_matrix* injection_orthogonal_tendance, int const& nombre_observations_effectives, gsl_vector* taux_sauts) //bool const& berger, const gsl_matrix* tendance, const gsl_vector* observations_sauvegarde)
 {
 
   gsl_vector* vect_taux_sauts = gsl_vector_alloc(point_posterior->size);
@@ -1502,8 +1503,8 @@ void generePointsPosterior(RcppGSL::vector<double> & tous_les_points_posterior, 
    //   gsl_vector_fprintf (g, vect_taux_sauts,"%f");
    //   fclose (g);
    // }
+    gsl_vector_set(taux_sauts,i, gsl_blas_dasum(vect_taux_sauts) / point_posterior->size); //mean of vect_taux_sauts
     }
-
   gsl_vector_free(vect_taux_sauts);
 }
   
@@ -1564,7 +1565,7 @@ return ncols;
 
 
 //[[Rcpp::export]]
-RcppGSL::vector<double> GibbsPosteriorC(int dimension, double regularite, int nb_points_a_generer, int iterations, double sd_instrum, int nb_fonctionsTendance, unsigned long int random_seed, std::vector<std::string> words, RcppGSL::matrix<double> planXP, RcppGSL::vector<double> observations, RcppGSL::matrix<double> tendanceR)
+Rcpp::List GibbsPosteriorC(int dimension, double regularite, int nb_points_a_generer, int iterations, double sd_instrum, int nb_fonctionsTendance, unsigned long int random_seed, std::vector<std::string> words, RcppGSL::matrix<double> planXP, RcppGSL::vector<double> observations, RcppGSL::matrix<double> tendanceR, RcppGSL::vector<double> point_posterior_depart)
 {
  
   // Je ne comprends pas grand chose a ce qui suit : j'ai juste suivi le modele donne par la documentation de gsl_randist.
@@ -1613,6 +1614,20 @@ RcppGSL::vector<double> tous_les_points_posterior(dimension * nb_points_a_genere
 
 // Allocation du gsl_vector* tampon point_posterior qui stockera le point (ie le vecteur contenant les longueurs de correlation) en train d'être sample a partir de la loi a posteriori jointe.
 gsl_vector* point_posterior = gsl_vector_alloc(dimension);
+
+if(point_posterior_depart->size == dimension)
+{
+	gsl_vector_memcpy(point_posterior,point_posterior_depart); // point_posterior est le point courant ; il est initialise au point de depart
+}
+else
+{
+	cout << "Le point de depart de Gibbs n'a pas ete specifie." << endl;
+}
+
+//On calcule les taux d'acceptation des sauts, mais je ne sais pas comment renvoyer le resultat avec l'echantillon a posteriori !
+// Allocation du vecteur contenant les taux moyens d'acceptation de sauts pour chaque point genere
+//gsl_vector* taux_sauts = gsl_vector_calloc(nb_points_a_generer);
+RcppGSL::vector<double> taux_sauts(nb_points_a_generer);
 
 // Allocation et remplissage de la MatriceEcarts (classe contenant... la matrice des ecarts entre points du planXP)
 MatriceEcarts* matrice_ecarts = new MatriceEcarts(planXP);
@@ -1717,7 +1732,7 @@ else
  gsl_vector_free(observations_sauvegarde);
 
 
- // Attention !!! Commenter ce qui suit empeche de specifier ou commence le Gibbs : on a une perte de fonctionnalite
+ // Attention !!! Commenter ce qui suit empeche de specifier ou commence le Gibbs : on a une perte de fonctionnalite --> Probleme regle
 
 
  // FILE * fLC;
@@ -1760,7 +1775,7 @@ else
   cout << "Noyau de Matern anisotrope geometrique de dimension " << dimension << "." << endl;
   NoyauMaternAnisotropeGeometrique* noyauG = new NoyauMaternAnisotropeGeometrique(regularite,longueurs_correlation);
   //cout << "dans main LC noyauG = " << noyauG->getUneLongueurCorrelation(0)<<endl;
-  generePointsPosterior(tous_les_points_posterior,nb_points_a_generer,point_posterior,r,observations,matrice_ecarts,noyauG,sd_instrum,iterations,injection_orthogonal_tendance,nombre_observations_effectives); //berger,tendance,observations_sauvegarde);
+  generePointsPosterior(tous_les_points_posterior,nb_points_a_generer,point_posterior,r,observations,matrice_ecarts,noyauG,sd_instrum,iterations,injection_orthogonal_tendance,nombre_observations_effectives,taux_sauts); //berger,tendance,observations_sauvegarde);
   delete noyauG;
       }
     else if(type == "tensorise")
@@ -1768,7 +1783,7 @@ else
   cout << "Noyau de Matern tensorise de dimension " << dimension << "." << endl;  
   NoyauMaternTensorise* noyauT = new NoyauMaternTensorise(regularite,longueurs_correlation);
   //cout << noyauT->calCorrelation1d(287.95) << endl;
-  generePointsPosterior(tous_les_points_posterior,nb_points_a_generer,point_posterior,r,observations,matrice_ecarts,noyauT,sd_instrum,iterations,injection_orthogonal_tendance,nombre_observations_effectives); //berger,tendance,observations_sauvegarde);
+  generePointsPosterior(tous_les_points_posterior,nb_points_a_generer,point_posterior,r,observations,matrice_ecarts,noyauT,sd_instrum,iterations,injection_orthogonal_tendance,nombre_observations_effectives,taux_sauts); //berger,tendance,observations_sauvegarde);
   delete noyauT;
       }
     else
@@ -1786,9 +1801,33 @@ gsl_vector_free(longueurs_correlation);
 delete matrice_ecarts;
 
 
-  return tous_les_points_posterior;
+  //return tous_les_points_posterior;
+
+// Since the compiler does not seem to accept a list of RcppGSL::vector<double>, manual conversion to Rcpp::NumericVector.
+// Done in the stupidest way possible: copy element by element.
+  
+Rcpp::NumericVector tous_les_points_posterior_numeric(tous_les_points_posterior->size);
+Rcpp::NumericVector taux_sauts_numeric(taux_sauts->size);
+
+for(int i=0 ; i<tous_les_points_posterior->size; i++)
+{
+  tous_les_points_posterior_numeric[i] = tous_les_points_posterior[i];
+}
+
+for(int i=0 ; i<taux_sauts->size; i++)
+{
+  taux_sauts_numeric[i] = taux_sauts[i];
+}
+
+tous_les_points_posterior.free();
+taux_sauts.free();
+
+return Rcpp::List::create(Rcpp::Named("posterior") = tous_les_points_posterior_numeric, Rcpp::Named("taux_sauts") = taux_sauts_numeric);
+
 
 }
+
+
 
 //[[Rcpp::export]]
 int quarantedeux()
