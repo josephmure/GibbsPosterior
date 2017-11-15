@@ -114,7 +114,7 @@ faitSimulations <- function(germe_aleatoire)
   # 	write.matrix(MAP,"liste_MAP.txt",sep = "\t")
   
   #Simulations[germe_aleatoire,] <- c(argmax_vraisemblance_integree,mode_posterior,point_posterior)
-  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = matrix(point_posterior,ncol=NOMBRE_DIMENSIONS,byrow=TRUE), planXP = x_connus, observations = y_connus, tendance = tendance, germe_aleatoire = germe_aleatoire, taux_sauts = res$taux_sauts) 
+  list(MLE = argmax_vraisemblance_integree,MAP = mode_posterior,Posterior = Posterior, planXP = x_connus, observations = y_connus, tendance = tendance, germe_aleatoire = germe_aleatoire, taux_sauts = res$taux_sauts) 
 
 
   }

@@ -2,14 +2,6 @@
 
 FONCTIONS <- NULL
 
-FONCTIONS <- c(FONCTIONS, function(x) 1)
-
-FONCTIONS <- c(FONCTIONS, function(x) x[1])
-
-FONCTIONS <- c(FONCTIONS, function(x) x[2])
-
-FONCTIONS <- c(FONCTIONS, function(x) x[3])
-
 
 ##Définit les fonctions formant une base de l'espace auquel appartient REELLEMENT la fonction moyenne
 
