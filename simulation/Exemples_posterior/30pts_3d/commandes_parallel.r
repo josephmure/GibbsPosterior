@@ -81,11 +81,12 @@ faitSimulations <- function(germe_aleatoire)
   #	write.matrix(VECTEUR_GERMES_ALEATOIRES, "liste_germes_aleatoires.txt")
   #	source("../../nettoyage.r") #inutile : on n'ecrit plus de donnees intermediaires sur le disque dur
   #	source("../../generePlanXP.r") #inutile : deja contenu dans genereObservations.r
-  x_connus <- generePlanXP(germe_aleatoire,NOMBRE_POINTS_PLANXP = 100, NOMBRE_DIMENSIONS, LHS=FALSE)
+  x_connus <- generePlanXP(germe_aleatoire,NOMBRE_POINTS_PLANXP = 30, NOMBRE_DIMENSIONS, LHS=FALSE)
   #	source("../genereObservations.r")
   #	source("../../genereMatriceTendance.r")
   tendance <- genereMatriceTendance(x_connus,FONCTIONS)
   moyenne <- creeMoyenne(x_connus,NOMBRE_POINTS_PLANXP = nrow(x_connus), FONCTIONS_REELLES, BETA)
+  set.seed(germe_aleatoire)
   y_connus <- creeObservations(x_connus, TYPE_NOYAU_MATERN, LONGUEUR_CORRELATION, REGULARITE,moyenne)
   #	source("../../scriptR.r")
   
