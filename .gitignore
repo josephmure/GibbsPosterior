@@ -42,3 +42,7 @@ Posterior_anis_geom.txt
 taux_sauts.txt
 GibbsPosterior
 .Rproj.user
+
+#Files created by Slurm of R CMD BATCH
+*.Rout
+slurm*
