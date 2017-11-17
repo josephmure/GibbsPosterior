@@ -14,7 +14,7 @@ source("../../postTraitement.r")
 NOMBRE_PROCESSUS <-  500
 
 NOMBRE_DIMENSIONS <- 3
-REGULARITE <- 2.5
+
 NOMBRE_POINTS_POSTERIOR_A_GENERER <- 1000
 NOMBRE_PAS_METROPOLIS <- 50 
 ECART_TYPE_METROPOLIS <- 0.2
@@ -32,6 +32,7 @@ TYPE_PRIOR <- TYPE_NOYAU_MATERN_TYPE_PRIOR[2]
 MLE <- NULL
 MAP <- NULL
 MAP_optim_classique <- NULL
+
 
 
 ## Inutile : on n'ecrit plus de donnees intermediaires sur le disque dur
@@ -87,7 +88,7 @@ faitSimulations <- function(germe_aleatoire)
   tendance <- genereMatriceTendance(x_connus,FONCTIONS)
   moyenne <- creeMoyenne(x_connus,NOMBRE_POINTS_PLANXP = nrow(x_connus), FONCTIONS_REELLES, BETA)
   set.seed(germe_aleatoire)
-  y_connus <- creeObservations(x_connus, TYPE_NOYAU_MATERN, LONGUEUR_CORRELATION, REGULARITE,moyenne)
+  y_connus <- creeObservations(x_connus, TYPE_NOYAU_MATERN, LONGUEUR_CORRELATION, REGULARITE_VRAIE,moyenne)
   #	source("../../scriptR.r")
   
   #sourceCpp("../../RcppGibbsPosterior.cpp")

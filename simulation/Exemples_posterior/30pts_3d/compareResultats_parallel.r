@@ -90,7 +90,7 @@ ECHANTILLON_POSTERIOR <- une_simulation$Posterior
 
 if(TYPE_NOYAU_MATERN == "geometrique") 
 {
-  NOYAU <- creeMaternIsotrope(variance = 1, longueur = LONGUEUR_CORRELATION, regularite = REGULARITE ) # anisotrope geometrique en fait !  
+  NOYAU <- creeMaternIsotrope(variance = 1, longueur = LONGUEUR_CORRELATION, regularite = REGULARITE_VRAIE ) # anisotrope geometrique en fait !  
   NOYAU_ARGMAX_VRAISEMBLANCE <- creeMaternIsotrope(variance = 1, longueur = LONGUEUR_CORRELATION_ARGMAX_VRAISEMBLANCE, regularite = REGULARITE )
   NOYAU_MODE_POSTERIOR <- creeMaternIsotrope(variance = 1, longueur = LONGUEUR_CORRELATION_MODE_POSTERIOR, regularite = REGULARITE ) 
 } else if (TYPE_NOYAU_MATERN == "tensorise") 
