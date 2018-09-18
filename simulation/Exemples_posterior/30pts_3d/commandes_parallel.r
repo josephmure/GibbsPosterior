@@ -22,7 +22,7 @@ ECART_TYPE_METROPOLIS <- 0.2
 POINT_DEPART <- rep(1,NOMBRE_DIMENSIONS)
 
 #TYPE_NOYAU_MATERN_TYPE_PRIOR <- scan("../type_noyau_prior.txt", what="character") ## interessant, mais en pratique c'est toujours la meme chose
-TYPE_NOYAU_MATERN_TYPE_PRIOR <- c("geometrique","REML")
+TYPE_NOYAU_MATERN_TYPE_PRIOR <- c("tensorise","REML")
 TYPE_NOYAU_MATERN <- TYPE_NOYAU_MATERN_TYPE_PRIOR[1]
 TYPE_PRIOR <- TYPE_NOYAU_MATERN_TYPE_PRIOR[2]
 
@@ -62,12 +62,19 @@ assignInNamespace("connectBackend", value=connectBackend.patched, pos='package:S
 
 #cherche le nom de la machine. L'experience montre que le nom interessant est le premier fourni par hostname -I, mais cela doit etre verifie en cas de changement de maitre
 #hostname = strsplit(system("hostname -I", intern = TRUE)," ")[[1]][1]
+#hostname = system("hostname -i", intern=TRUE)
+#hostname = system("hostname -f",intern=TRUE)
+#adresse_spark = paste0("spark://",hostname,":7077")
+#adresse_spark = paste0("spark://",hostname,":7077")
+#sparkR.session(adresse_spark, appName="Simulations")
+
+sparkR.session("spark://atfront1.athos.hpc.edf.fr:7077",appName="Simulations")
 
 #sparkR.session(paste0("spark://", hostname, ":7077"), appName="Simulations")
 
 #sparkR.session("local[*]")
 #nom_session_sparkR <- paste0("spark://",Sys.info()["nodename"],".athos.hbc.edf.fr:7077")
-sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
+# FONCTIONNE EN MODE INTERACTIF sparkR.session("spark://10.89.80.11:7077", appName="Simulations")
 #sparkR.session("spark://10.114.116.10:7077",appName="Simulations")
 #sparkR.session(appName="Simulations")
 

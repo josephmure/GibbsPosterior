@@ -41,10 +41,14 @@ if(det(matriceCorrelation)!=0)
 	if(length(tendance)>1) ## en cas de krigeage simple : tendance est une matrice 1x1 contenant 0
 	{
 		nbFonctionsTendance <- ncol(tendance)
-		inverseMatriceCorrelationTendance <- solve(matriceCorrelation,tendance)
-		tendanceInverseMatriceCorrelationTendance <- t(tendance) %*% inverseMatriceCorrelationTendance
-		ProjectionTendance <- tendance %*% solve(tendanceInverseMatriceCorrelationTendance, t(inverseMatriceCorrelationTendance))
-		y_connus <- y_connus - ProjectionTendance %*% y_connus
+		inverseMatriceCorrelationTendance <- try(solve(matriceCorrelation,tendance))
+		if(is.matrix(inverseMatriceCorrelationTendance)) { #en cas de possibilite d'inverser la matriceCorrelation
+			tendanceInverseMatriceCorrelationTendance <- t(tendance) %*% inverseMatriceCorrelationTendance
+			ProjectionTendance <- tendance %*% solve(tendanceInverseMatriceCorrelationTendance, t(inverseMatriceCorrelationTendance))
+			y_connus <- y_connus - ProjectionTendance %*% y_connus
+		} else {
+		return(0)
+		}
 	}
  	Vraisemblance_integree <- det(matriceCorrelation)^(-1/2)* det(tendanceInverseMatriceCorrelationTendance)^(-1/2) * (sum(y_connus* solve(matriceCorrelation,y_connus)))^(-(nrow(x_connus)-nbFonctionsTendance)/2)
 }

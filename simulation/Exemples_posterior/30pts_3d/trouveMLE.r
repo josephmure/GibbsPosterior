@@ -40,6 +40,7 @@ if(TYPE_NOYAU_MATERN == "geometrique")
 
 if(TYPE_NOYAU_MATERN == "tensorise")
 {
+	print("Dans le fonction d'optimisation trouveMLE : cas tensorise")
 	opt1 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = evalueOpposeLogVraisemblanceIntegreeTens, x_connus= x_connus, y_connus= y_connus, regularite=REGULARITE, tendance=tendance, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
 	opt2 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = evalueOpposeLogVraisemblanceIntegreeTens, x_connus= x_connus, y_connus= y_connus, regularite=REGULARITE, tendance=tendance, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
 	opt3 <- optim(par=runif(NOMBRE_DIMENSIONS,max=2),fn = evalueOpposeLogVraisemblanceIntegreeTens, x_connus= x_connus, y_connus= y_connus, regularite=REGULARITE, tendance=tendance, method = "L-BFGS-B",lower = rep(0,NOMBRE_DIMENSIONS)) 
