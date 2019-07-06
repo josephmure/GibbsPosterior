@@ -4,8 +4,8 @@ Title: Gibbs posterior
 Version: 1.0
 Date: 2017-09-11
 Author: Joseph MURE
-Maintainer: Joseph MURE <mure@math.univ-paris-diderot.fr>
-Description: One paragraph description of what the package does as one or more full sentences.
+Maintainer: Joseph MURE <joseph.mure@edf.fr>
+Description: Samples from the Gibbs reference posterior distribution.
 License: GPL (>= 3)
 Imports: Rcpp (>= 0.12.5), RcppGSL
 LinkingTo: Rcpp, RcppGSL
