@@ -3,32 +3,35 @@
 \alias{GibbsPosterior}
 \docType{package}
 \title{
-  A short title line describing what the package does
+  Samples from the Gibbs reference posterior distribution.
 }
 \description{
-  A more detailed description of what the package does. A length
-  of about one to five lines is recommended.
+  In anisotropic Kriging models, estimating the correlation lengths
+  is a difficult problem. The Gibbs reference posterior distribution
+  is an Objective Bayesian solution. This package allows the user to
+  sample from the Gibbs reference posterior distribution on correlation
+  lengths.
 }
 \details{
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
+  The GibbsPosteriorC functions samples from the Gibbs reference 
+  posterior distribution on the correlation lengths for Kriging models
+  with Matern anisotropic (tensorized or geometric) kernel.
+  It does this using a Metropolis-within-Gibbs algorithm.
 }
 \author{
-Your Name, email optional.
-
-Maintainer: Your Name <your@email.com>
+Joseph MURE <joseph.mure@edf.fr>
 }
-\references{
-  This optional section can contain literature or other references for
-  background information.
-}
-\keyword{ package }
-\seealso{
-  Optional links to other man pages
-}
-\examples{
-  \dontrun{
+##\references{
+##  This optional section can contain literature or other references for
+##  background information.
+##}
+##\keyword{ package }
+##\seealso{
+##  Optional links to other man pages
+##}
+##\examples{
+##  \dontrun{
      ## Optional simple examples of the most important functions
      ## These can be in \dontrun{} and \donttest{} blocks.   
-  }
+##  }
 }
