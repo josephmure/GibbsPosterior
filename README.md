@@ -6,10 +6,11 @@ This R implementation consists in 2 packages that need to be installed in this o
 2. `GibbsPosterior`
 
 As `GibbsPosterior` uses C++ code, the package [Rcpp](https://cran.r-project.org/web/packages/Rcpp/) is a prerequisite.
+Moreover, `GibbsPosterior` makes use of the [GNU Scientific Library](https://www.gnu.org/software/gsl/) so the package [RcppGSL](https://cran.r-project.org/web/packages/RcppGSL/) is also required.
 
 ## Installation
 
-If it is not already done, install [Rcpp](https://cran.r-project.org/web/packages/Rcpp/).
+If it is not already done, install [Rcpp](https://cran.r-project.org/web/packages/Rcpp/) and [RcppGSL](https://cran.r-project.org/web/packages/RcppGSL/).
 
 Move to the `GibbsPosterior/` folder and execute the following commands:
 
