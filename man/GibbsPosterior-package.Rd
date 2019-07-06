@@ -21,17 +21,11 @@
 \author{
 Joseph MURE <joseph.mure@edf.fr>
 }
-##\references{
-##  This optional section can contain literature or other references for
-##  background information.
-##}
-##\keyword{ package }
-##\seealso{
-##  Optional links to other man pages
-##}
-##\examples{
-##  \dontrun{
-     ## Optional simple examples of the most important functions
-     ## These can be in \dontrun{} and \donttest{} blocks.   
-##  }
+\references{
+     J.Muré (2019), _Optimal compromise between incompatible 
+     conditional probability distributions, with application 
+     to Objective Bayesian Kriging_, _ESAIM: Probability and 
+     Statistics_, *23*, 271-309.
+}
+\keyword{ Gibbs reference posterior }
 }
